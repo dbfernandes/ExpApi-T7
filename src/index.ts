@@ -6,6 +6,7 @@ const app = express();
 const env = getEnv();
 const PORT = env.PORT;
 
+app.use(express.json());
 app.use(router);
 
 app.listen(PORT, () => {
