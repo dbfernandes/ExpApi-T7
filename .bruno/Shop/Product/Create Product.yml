@@ -1,0 +1,35 @@
+info:
+  name: Create Product
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{base_url}}/products"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "{{name}}",
+        "price": "{{price}}",
+        "stock": {{stock}}
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: before-request
+      code: |-
+        const name = bru.interpolate("{{$randomProductName}}")
+        const price = bru.interpolate("{{$randomPrice}}")
+        const stock = Math.floor(Math.random() * 100)
+                                     
+        bru.setVar("name", name)
+        bru.setVar("price", price)
+        bru.setVar("stock", stock)
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

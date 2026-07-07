@@ -1,0 +1,10 @@
+name: Shop
+variables:
+  - name: base_url
+    value: http://localhost:4353/v1
+  - name: client
+    value: 2a1ca799-e9c6-4e75-8290-54452cba0e3a
+  - name: admin
+    value: 2daf129d-db11-480e-915d-a71698f7f84c
+  - name: user_example
+    value: 97cf6f6b-d55a-4c3c-bbc9-4dd36c9a0db4
