@@ -1,7 +1,12 @@
 import type { Request, Response } from "express";
 import type { CreateUserDto } from "./user.types.js";
-import { createUser, getUser, getUsers } from "./user.service.js";
-import { StatusCodes } from "http-status-codes";
+import {
+  createUser,
+  getUser,
+  getUsers,
+  findUserByEmail,
+} from "./user.service.js";
+import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { userErrors } from "./user.errors.js";
 
 const index = async (req: Request, res: Response) => {
@@ -16,6 +21,9 @@ const index = async (req: Request, res: Response) => {
 const create = async (req: Request, res: Response) => {
   const data = req.body as CreateUserDto;
   try {
+    if (await findUserByEmail(data.email)) {
+      return res.status(StatusCodes.CONFLICT).send(ReasonPhrases.CONFLICT);
+    }
     const user = await createUser(data);
     res.status(StatusCodes.CREATED).json(user);
   } catch (err) {
