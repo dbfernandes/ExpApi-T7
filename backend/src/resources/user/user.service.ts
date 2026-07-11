@@ -32,7 +32,7 @@ export async function createUser(data: CreateUserDto): Promise<UserDto> {
   const salt = await genSalt(env.ROUNDS_BCRYPT);
   const passwordHash = await hash(data.password, salt);
   const { password, ...user } = await prisma.user.create({
-    data: { ...data, password: passwordHash, userTypeId: UserTypes.CLIENT },
+    data: { ...data, password: passwordHash },
   });
   return user;
 }

@@ -25,7 +25,6 @@ app.use(
       maxAge: 2 * 60 * 60 * 1000,
       httpOnly: true,
       secure: !!(process.env.NODE_ENV === "production"),
-      // s%3A404ccdba-beb6-44a4-90ab-48e62221fd42.KCcSGt5FKzA8c5wSd8l72h%2BRWbnXVF6jRQMu2Js%2By9g
     },
   }),
 );
